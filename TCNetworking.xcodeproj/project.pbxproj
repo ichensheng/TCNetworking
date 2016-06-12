@@ -1,0 +1,692 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		348F30CC1D0DA7C100CEE872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F30CB1D0DA7C100CEE872 /* main.m */; };
+		348F30CF1D0DA7C100CEE872 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F30CE1D0DA7C100CEE872 /* AppDelegate.m */; };
+		348F30D21D0DA7C100CEE872 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F30D11D0DA7C100CEE872 /* ViewController.m */; };
+		348F30D51D0DA7C100CEE872 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 348F30D31D0DA7C100CEE872 /* Main.storyboard */; };
+		348F30D71D0DA7C100CEE872 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348F30D61D0DA7C100CEE872 /* Assets.xcassets */; };
+		348F30DA1D0DA7C200CEE872 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 348F30D81D0DA7C200CEE872 /* LaunchScreen.storyboard */; };
+		348F30E51D0DA7C200CEE872 /* TCNetworkingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F30E41D0DA7C200CEE872 /* TCNetworkingTests.m */; };
+		348F30F01D0DA7C200CEE872 /* TCNetworkingUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F30EF1D0DA7C200CEE872 /* TCNetworkingUITests.m */; };
+		348F31401D0DA8A600CEE872 /* TCBaseAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F31271D0DA8A600CEE872 /* TCBaseAPIClient.m */; };
+		348F31411D0DA8A600CEE872 /* TCBatchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F31291D0DA8A600CEE872 /* TCBatchRequest.m */; };
+		348F31421D0DA8A600CEE872 /* TCBatchRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F312B1D0DA8A600CEE872 /* TCBatchRequestManager.m */; };
+		348F31431D0DA8A600CEE872 /* TCCommAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F312D1D0DA8A600CEE872 /* TCCommAPIClient.m */; };
+		348F31441D0DA8A600CEE872 /* TCDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F312F1D0DA8A600CEE872 /* TCDownloadManager.m */; };
+		348F31451D0DA8A600CEE872 /* TCDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F31311D0DA8A600CEE872 /* TCDownloadOperation.m */; };
+		348F31461D0DA8A600CEE872 /* TCFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F31331D0DA8A600CEE872 /* TCFileDownloader.m */; };
+		348F31471D0DA8A600CEE872 /* TCFileUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F31351D0DA8A600CEE872 /* TCFileUploader.m */; };
+		348F31481D0DA8A600CEE872 /* TCNetworkingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F31371D0DA8A600CEE872 /* TCNetworkingHelper.m */; };
+		348F31491D0DA8A600CEE872 /* TCSerialRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F31391D0DA8A600CEE872 /* TCSerialRequestManager.m */; };
+		348F314A1D0DA8A600CEE872 /* TCSerialRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F313B1D0DA8A600CEE872 /* TCSerialRequestOperation.m */; };
+		348F314B1D0DA8A600CEE872 /* TCUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F313D1D0DA8A600CEE872 /* TCUploadManager.m */; };
+		348F314C1D0DA8A600CEE872 /* TCUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F313F1D0DA8A600CEE872 /* TCUploadOperation.m */; };
+		AE12C4D51A0417E1C7F11403 /* libPods-TCNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3DB305C8B88F13178C4959 /* libPods-TCNetworking.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		348F30E11D0DA7C200CEE872 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348F30BF1D0DA7C100CEE872 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 348F30C61D0DA7C100CEE872;
+			remoteInfo = TCNetworking;
+		};
+		348F30EC1D0DA7C200CEE872 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348F30BF1D0DA7C100CEE872 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 348F30C61D0DA7C100CEE872;
+			remoteInfo = TCNetworking;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		348F30C71D0DA7C100CEE872 /* TCNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		348F30CB1D0DA7C100CEE872 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		348F30CD1D0DA7C100CEE872 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		348F30CE1D0DA7C100CEE872 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		348F30D01D0DA7C100CEE872 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		348F30D11D0DA7C100CEE872 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		348F30D41D0DA7C100CEE872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		348F30D61D0DA7C100CEE872 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		348F30D91D0DA7C200CEE872 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		348F30DB1D0DA7C200CEE872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		348F30E01D0DA7C200CEE872 /* TCNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		348F30E41D0DA7C200CEE872 /* TCNetworkingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCNetworkingTests.m; sourceTree = "<group>"; };
+		348F30E61D0DA7C200CEE872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		348F30EB1D0DA7C200CEE872 /* TCNetworkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TCNetworkingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		348F30EF1D0DA7C200CEE872 /* TCNetworkingUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCNetworkingUITests.m; sourceTree = "<group>"; };
+		348F30F11D0DA7C200CEE872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		348F31261D0DA8A600CEE872 /* TCBaseAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBaseAPIClient.h; sourceTree = "<group>"; };
+		348F31271D0DA8A600CEE872 /* TCBaseAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBaseAPIClient.m; sourceTree = "<group>"; };
+		348F31281D0DA8A600CEE872 /* TCBatchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBatchRequest.h; sourceTree = "<group>"; };
+		348F31291D0DA8A600CEE872 /* TCBatchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBatchRequest.m; sourceTree = "<group>"; };
+		348F312A1D0DA8A600CEE872 /* TCBatchRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBatchRequestManager.h; sourceTree = "<group>"; };
+		348F312B1D0DA8A600CEE872 /* TCBatchRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBatchRequestManager.m; sourceTree = "<group>"; };
+		348F312C1D0DA8A600CEE872 /* TCCommAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCommAPIClient.h; sourceTree = "<group>"; };
+		348F312D1D0DA8A600CEE872 /* TCCommAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCommAPIClient.m; sourceTree = "<group>"; };
+		348F312E1D0DA8A600CEE872 /* TCDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDownloadManager.h; sourceTree = "<group>"; };
+		348F312F1D0DA8A600CEE872 /* TCDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDownloadManager.m; sourceTree = "<group>"; };
+		348F31301D0DA8A600CEE872 /* TCDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDownloadOperation.h; sourceTree = "<group>"; };
+		348F31311D0DA8A600CEE872 /* TCDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDownloadOperation.m; sourceTree = "<group>"; };
+		348F31321D0DA8A600CEE872 /* TCFileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFileDownloader.h; sourceTree = "<group>"; };
+		348F31331D0DA8A600CEE872 /* TCFileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFileDownloader.m; sourceTree = "<group>"; };
+		348F31341D0DA8A600CEE872 /* TCFileUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCFileUploader.h; sourceTree = "<group>"; };
+		348F31351D0DA8A600CEE872 /* TCFileUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCFileUploader.m; sourceTree = "<group>"; };
+		348F31361D0DA8A600CEE872 /* TCNetworkingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNetworkingHelper.h; sourceTree = "<group>"; };
+		348F31371D0DA8A600CEE872 /* TCNetworkingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNetworkingHelper.m; sourceTree = "<group>"; };
+		348F31381D0DA8A600CEE872 /* TCSerialRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSerialRequestManager.h; sourceTree = "<group>"; };
+		348F31391D0DA8A600CEE872 /* TCSerialRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSerialRequestManager.m; sourceTree = "<group>"; };
+		348F313A1D0DA8A600CEE872 /* TCSerialRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCSerialRequestOperation.h; sourceTree = "<group>"; };
+		348F313B1D0DA8A600CEE872 /* TCSerialRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCSerialRequestOperation.m; sourceTree = "<group>"; };
+		348F313C1D0DA8A600CEE872 /* TCUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUploadManager.h; sourceTree = "<group>"; };
+		348F313D1D0DA8A600CEE872 /* TCUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUploadManager.m; sourceTree = "<group>"; };
+		348F313E1D0DA8A600CEE872 /* TCUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCUploadOperation.h; sourceTree = "<group>"; };
+		348F313F1D0DA8A600CEE872 /* TCUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCUploadOperation.m; sourceTree = "<group>"; };
+		5A3DB305C8B88F13178C4959 /* libPods-TCNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TCNetworking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C511BFEF1EBFDF142FC9E3CF /* Pods-TCNetworking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCNetworking.release.xcconfig"; path = "Pods/Target Support Files/Pods-TCNetworking/Pods-TCNetworking.release.xcconfig"; sourceTree = "<group>"; };
+		D033B6F7678EEA8CEABB4A6E /* Pods-TCNetworking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCNetworking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TCNetworking/Pods-TCNetworking.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		348F30C41D0DA7C100CEE872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE12C4D51A0417E1C7F11403 /* libPods-TCNetworking.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		348F30DD1D0DA7C200CEE872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		348F30E81D0DA7C200CEE872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		125A1BF000B54438B6B217A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A3DB305C8B88F13178C4959 /* libPods-TCNetworking.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		348F30BE1D0DA7C100CEE872 = {
+			isa = PBXGroup;
+			children = (
+				348F30C91D0DA7C100CEE872 /* TCNetworking */,
+				348F30E31D0DA7C200CEE872 /* TCNetworkingTests */,
+				348F30EE1D0DA7C200CEE872 /* TCNetworkingUITests */,
+				348F30C81D0DA7C100CEE872 /* Products */,
+				AD836DC153431241DFB41298 /* Pods */,
+				125A1BF000B54438B6B217A1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		348F30C81D0DA7C100CEE872 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				348F30C71D0DA7C100CEE872 /* TCNetworking.app */,
+				348F30E01D0DA7C200CEE872 /* TCNetworkingTests.xctest */,
+				348F30EB1D0DA7C200CEE872 /* TCNetworkingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		348F30C91D0DA7C100CEE872 /* TCNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				348F31251D0DA8A600CEE872 /* Classes */,
+				348F30CD1D0DA7C100CEE872 /* AppDelegate.h */,
+				348F30CE1D0DA7C100CEE872 /* AppDelegate.m */,
+				348F30D01D0DA7C100CEE872 /* ViewController.h */,
+				348F30D11D0DA7C100CEE872 /* ViewController.m */,
+				348F30D31D0DA7C100CEE872 /* Main.storyboard */,
+				348F30D61D0DA7C100CEE872 /* Assets.xcassets */,
+				348F30D81D0DA7C200CEE872 /* LaunchScreen.storyboard */,
+				348F30DB1D0DA7C200CEE872 /* Info.plist */,
+				348F30CA1D0DA7C100CEE872 /* Supporting Files */,
+			);
+			path = TCNetworking;
+			sourceTree = "<group>";
+		};
+		348F30CA1D0DA7C100CEE872 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				348F30CB1D0DA7C100CEE872 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		348F30E31D0DA7C200CEE872 /* TCNetworkingTests */ = {
+			isa = PBXGroup;
+			children = (
+				348F30E41D0DA7C200CEE872 /* TCNetworkingTests.m */,
+				348F30E61D0DA7C200CEE872 /* Info.plist */,
+			);
+			path = TCNetworkingTests;
+			sourceTree = "<group>";
+		};
+		348F30EE1D0DA7C200CEE872 /* TCNetworkingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				348F30EF1D0DA7C200CEE872 /* TCNetworkingUITests.m */,
+				348F30F11D0DA7C200CEE872 /* Info.plist */,
+			);
+			path = TCNetworkingUITests;
+			sourceTree = "<group>";
+		};
+		348F31251D0DA8A600CEE872 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				348F31261D0DA8A600CEE872 /* TCBaseAPIClient.h */,
+				348F31271D0DA8A600CEE872 /* TCBaseAPIClient.m */,
+				348F31281D0DA8A600CEE872 /* TCBatchRequest.h */,
+				348F31291D0DA8A600CEE872 /* TCBatchRequest.m */,
+				348F312A1D0DA8A600CEE872 /* TCBatchRequestManager.h */,
+				348F312B1D0DA8A600CEE872 /* TCBatchRequestManager.m */,
+				348F312C1D0DA8A600CEE872 /* TCCommAPIClient.h */,
+				348F312D1D0DA8A600CEE872 /* TCCommAPIClient.m */,
+				348F312E1D0DA8A600CEE872 /* TCDownloadManager.h */,
+				348F312F1D0DA8A600CEE872 /* TCDownloadManager.m */,
+				348F31301D0DA8A600CEE872 /* TCDownloadOperation.h */,
+				348F31311D0DA8A600CEE872 /* TCDownloadOperation.m */,
+				348F31321D0DA8A600CEE872 /* TCFileDownloader.h */,
+				348F31331D0DA8A600CEE872 /* TCFileDownloader.m */,
+				348F31341D0DA8A600CEE872 /* TCFileUploader.h */,
+				348F31351D0DA8A600CEE872 /* TCFileUploader.m */,
+				348F31361D0DA8A600CEE872 /* TCNetworkingHelper.h */,
+				348F31371D0DA8A600CEE872 /* TCNetworkingHelper.m */,
+				348F31381D0DA8A600CEE872 /* TCSerialRequestManager.h */,
+				348F31391D0DA8A600CEE872 /* TCSerialRequestManager.m */,
+				348F313A1D0DA8A600CEE872 /* TCSerialRequestOperation.h */,
+				348F313B1D0DA8A600CEE872 /* TCSerialRequestOperation.m */,
+				348F313C1D0DA8A600CEE872 /* TCUploadManager.h */,
+				348F313D1D0DA8A600CEE872 /* TCUploadManager.m */,
+				348F313E1D0DA8A600CEE872 /* TCUploadOperation.h */,
+				348F313F1D0DA8A600CEE872 /* TCUploadOperation.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		AD836DC153431241DFB41298 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D033B6F7678EEA8CEABB4A6E /* Pods-TCNetworking.debug.xcconfig */,
+				C511BFEF1EBFDF142FC9E3CF /* Pods-TCNetworking.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		348F30C61D0DA7C100CEE872 /* TCNetworking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 348F30F41D0DA7C200CEE872 /* Build configuration list for PBXNativeTarget "TCNetworking" */;
+			buildPhases = (
+				3AADEB9ACC6ED8EEAF073F2F /* Check Pods Manifest.lock */,
+				348F30C31D0DA7C100CEE872 /* Sources */,
+				348F30C41D0DA7C100CEE872 /* Frameworks */,
+				348F30C51D0DA7C100CEE872 /* Resources */,
+				EC1437953DFBED45BB6A6AC1 /* Embed Pods Frameworks */,
+				5BB646E9317F75DA1F37F681 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TCNetworking;
+			productName = TCNetworking;
+			productReference = 348F30C71D0DA7C100CEE872 /* TCNetworking.app */;
+			productType = "com.apple.product-type.application";
+		};
+		348F30DF1D0DA7C200CEE872 /* TCNetworkingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 348F30F71D0DA7C200CEE872 /* Build configuration list for PBXNativeTarget "TCNetworkingTests" */;
+			buildPhases = (
+				348F30DC1D0DA7C200CEE872 /* Sources */,
+				348F30DD1D0DA7C200CEE872 /* Frameworks */,
+				348F30DE1D0DA7C200CEE872 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				348F30E21D0DA7C200CEE872 /* PBXTargetDependency */,
+			);
+			name = TCNetworkingTests;
+			productName = TCNetworkingTests;
+			productReference = 348F30E01D0DA7C200CEE872 /* TCNetworkingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		348F30EA1D0DA7C200CEE872 /* TCNetworkingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 348F30FA1D0DA7C200CEE872 /* Build configuration list for PBXNativeTarget "TCNetworkingUITests" */;
+			buildPhases = (
+				348F30E71D0DA7C200CEE872 /* Sources */,
+				348F30E81D0DA7C200CEE872 /* Frameworks */,
+				348F30E91D0DA7C200CEE872 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				348F30ED1D0DA7C200CEE872 /* PBXTargetDependency */,
+			);
+			name = TCNetworkingUITests;
+			productName = TCNetworkingUITests;
+			productReference = 348F30EB1D0DA7C200CEE872 /* TCNetworkingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		348F30BF1D0DA7C100CEE872 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "陈胜";
+				TargetAttributes = {
+					348F30C61D0DA7C100CEE872 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 5ZUQ226LCB;
+					};
+					348F30DF1D0DA7C200CEE872 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 348F30C61D0DA7C100CEE872;
+					};
+					348F30EA1D0DA7C200CEE872 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 348F30C61D0DA7C100CEE872;
+					};
+				};
+			};
+			buildConfigurationList = 348F30C21D0DA7C100CEE872 /* Build configuration list for PBXProject "TCNetworking" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 348F30BE1D0DA7C100CEE872;
+			productRefGroup = 348F30C81D0DA7C100CEE872 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				348F30C61D0DA7C100CEE872 /* TCNetworking */,
+				348F30DF1D0DA7C200CEE872 /* TCNetworkingTests */,
+				348F30EA1D0DA7C200CEE872 /* TCNetworkingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		348F30C51D0DA7C100CEE872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				348F30DA1D0DA7C200CEE872 /* LaunchScreen.storyboard in Resources */,
+				348F30D71D0DA7C100CEE872 /* Assets.xcassets in Resources */,
+				348F30D51D0DA7C100CEE872 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		348F30DE1D0DA7C200CEE872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		348F30E91D0DA7C200CEE872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3AADEB9ACC6ED8EEAF073F2F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5BB646E9317F75DA1F37F681 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TCNetworking/Pods-TCNetworking-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC1437953DFBED45BB6A6AC1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TCNetworking/Pods-TCNetworking-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		348F30C31D0DA7C100CEE872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				348F31481D0DA8A600CEE872 /* TCNetworkingHelper.m in Sources */,
+				348F30D21D0DA7C100CEE872 /* ViewController.m in Sources */,
+				348F31431D0DA8A600CEE872 /* TCCommAPIClient.m in Sources */,
+				348F31421D0DA8A600CEE872 /* TCBatchRequestManager.m in Sources */,
+				348F31401D0DA8A600CEE872 /* TCBaseAPIClient.m in Sources */,
+				348F31451D0DA8A600CEE872 /* TCDownloadOperation.m in Sources */,
+				348F30CF1D0DA7C100CEE872 /* AppDelegate.m in Sources */,
+				348F314B1D0DA8A600CEE872 /* TCUploadManager.m in Sources */,
+				348F31491D0DA8A600CEE872 /* TCSerialRequestManager.m in Sources */,
+				348F314C1D0DA8A600CEE872 /* TCUploadOperation.m in Sources */,
+				348F31411D0DA8A600CEE872 /* TCBatchRequest.m in Sources */,
+				348F31471D0DA8A600CEE872 /* TCFileUploader.m in Sources */,
+				348F31461D0DA8A600CEE872 /* TCFileDownloader.m in Sources */,
+				348F31441D0DA8A600CEE872 /* TCDownloadManager.m in Sources */,
+				348F314A1D0DA8A600CEE872 /* TCSerialRequestOperation.m in Sources */,
+				348F30CC1D0DA7C100CEE872 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		348F30DC1D0DA7C200CEE872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				348F30E51D0DA7C200CEE872 /* TCNetworkingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		348F30E71D0DA7C200CEE872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				348F30F01D0DA7C200CEE872 /* TCNetworkingUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		348F30E21D0DA7C200CEE872 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 348F30C61D0DA7C100CEE872 /* TCNetworking */;
+			targetProxy = 348F30E11D0DA7C200CEE872 /* PBXContainerItemProxy */;
+		};
+		348F30ED1D0DA7C200CEE872 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 348F30C61D0DA7C100CEE872 /* TCNetworking */;
+			targetProxy = 348F30EC1D0DA7C200CEE872 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		348F30D31D0DA7C100CEE872 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				348F30D41D0DA7C100CEE872 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		348F30D81D0DA7C200CEE872 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				348F30D91D0DA7C200CEE872 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		348F30F21D0DA7C200CEE872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		348F30F31D0DA7C200CEE872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		348F30F51D0DA7C200CEE872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D033B6F7678EEA8CEABB4A6E /* Pods-TCNetworking.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TCNetworking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichensheng.TCNetworking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		348F30F61D0DA7C200CEE872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C511BFEF1EBFDF142FC9E3CF /* Pods-TCNetworking.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TCNetworking/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichensheng.TCNetworking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		348F30F81D0DA7C200CEE872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TCNetworkingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichensheng.TCNetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCNetworking.app/TCNetworking";
+			};
+			name = Debug;
+		};
+		348F30F91D0DA7C200CEE872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TCNetworkingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichensheng.TCNetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TCNetworking.app/TCNetworking";
+			};
+			name = Release;
+		};
+		348F30FB1D0DA7C200CEE872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TCNetworkingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichensheng.TCNetworkingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TCNetworking;
+			};
+			name = Debug;
+		};
+		348F30FC1D0DA7C200CEE872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TCNetworkingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichensheng.TCNetworkingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TCNetworking;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		348F30C21D0DA7C100CEE872 /* Build configuration list for PBXProject "TCNetworking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				348F30F21D0DA7C200CEE872 /* Debug */,
+				348F30F31D0DA7C200CEE872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		348F30F41D0DA7C200CEE872 /* Build configuration list for PBXNativeTarget "TCNetworking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				348F30F51D0DA7C200CEE872 /* Debug */,
+				348F30F61D0DA7C200CEE872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		348F30F71D0DA7C200CEE872 /* Build configuration list for PBXNativeTarget "TCNetworkingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				348F30F81D0DA7C200CEE872 /* Debug */,
+				348F30F91D0DA7C200CEE872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		348F30FA1D0DA7C200CEE872 /* Build configuration list for PBXNativeTarget "TCNetworkingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				348F30FB1D0DA7C200CEE872 /* Debug */,
+				348F30FC1D0DA7C200CEE872 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 348F30BF1D0DA7C100CEE872 /* Project object */;
+}
