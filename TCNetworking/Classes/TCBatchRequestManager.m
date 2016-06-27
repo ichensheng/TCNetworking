@@ -51,7 +51,7 @@
          * 请求队列
          */
         _requestQueue = [[NSOperationQueue alloc] init];
-        [_requestQueue setMaxConcurrentOperationCount:1];
+        [_requestQueue setMaxConcurrentOperationCount:5];
     }
     return self;
 }
