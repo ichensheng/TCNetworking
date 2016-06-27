@@ -63,30 +63,56 @@ static NSString * const kTCBatchRequestLockName = @"com.ichensheng.networking.ba
     CFRunLoopRun();
     self.executing = YES;
     @weakify(self)
-    self.requestTask =
-    [self.client POST:self.batchRequest.URLString parameters:self.batchRequest.parameters progress:nil
-              success:^(NSURLSessionDataTask *task, id responseObject) {
-                  @strongify(self)
-                  if (!self) {
-                      return;
+    self.requestTask = nil;
+    if (self.batchRequest.action == GET) {
+        [self.client GET:self.batchRequest.URLString parameters:self.batchRequest.parameters progress:nil
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      @strongify(self)
+                      if (!self) {
+                          return;
+                      }
+                      if (self.successBlock) {
+                          self.successBlock([TCNetworkingHelper parseResponse:responseObject], self.batchRequest);
+                      }
+                      [self done];
+                      CFRunLoopStop(CFRunLoopGetCurrent());
                   }
-                  if (self.successBlock) {
-                      self.successBlock([TCNetworkingHelper parseResponse:responseObject], self.batchRequest);
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      @strongify(self)
+                      if (!self) {
+                          return;
+                      }
+                      if (self.failureBlock) {
+                          self.failureBlock(error, self.batchRequest);
+                      }
+                      [self done];
+                      CFRunLoopStop(CFRunLoopGetCurrent());
+                  }];
+    } else {
+        [self.client POST:self.batchRequest.URLString parameters:self.batchRequest.parameters progress:nil
+                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                      @strongify(self)
+                      if (!self) {
+                          return;
+                      }
+                      if (self.successBlock) {
+                          self.successBlock([TCNetworkingHelper parseResponse:responseObject], self.batchRequest);
+                      }
+                      [self done];
+                      CFRunLoopStop(CFRunLoopGetCurrent());
                   }
-                  [self done];
-                  CFRunLoopStop(CFRunLoopGetCurrent());
-              }
-              failure:^(NSURLSessionDataTask *task, NSError *error) {
-                  @strongify(self)
-                  if (!self) {
-                      return;
-                  }
-                  if (self.failureBlock) {
-                      self.failureBlock(error, self.batchRequest);
-                  }
-                  [self done];
-                  CFRunLoopStop(CFRunLoopGetCurrent());
-              }];
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      @strongify(self)
+                      if (!self) {
+                          return;
+                      }
+                      if (self.failureBlock) {
+                          self.failureBlock(error, self.batchRequest);
+                      }
+                      [self done];
+                      CFRunLoopStop(CFRunLoopGetCurrent());
+                  }];
+    }
     [self.lock unlock];
 }
 

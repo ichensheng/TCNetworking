@@ -9,8 +9,11 @@
 #import "ViewController.h"
 #import "TCBatchRequestManager.h"
 #import "TCCommAPIClient.h"
+#import "TCNetworkingHelper.h"
 
 @interface ViewController ()
+
+@property (nonatomic, strong) TCBatchRequestManager *batchRequestManager;
 
 @end
 
@@ -18,16 +21,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    TCBatchRequest *request1 = [[TCBatchRequest alloc] initWithURL:@"http://www.baidu.com" parameters:nil];
-    TCBatchRequest *request2 = [[TCBatchRequest alloc] initWithURL:@"http://www.qq.com" parameters:nil];
-    TCBatchRequest *request3 = [[TCBatchRequest alloc] initWithURL:@"http://www.sina.com" parameters:nil];
-    TCBatchRequestManager *batchRequestManager = [[TCBatchRequestManager alloc] initWithSuccessBlock:^(NSDictionary *successResponses) {
+    TCBatchRequest *request1 = [TCBatchRequest POST:@"http://www.baidu.com" parameters:nil];
+    TCBatchRequest *request2 = [TCBatchRequest GET:@"http://www.qq.com" parameters:nil];
+    TCBatchRequest *request3 = [TCBatchRequest GET:@"http://www.sina.com" parameters:nil];
+    self.batchRequestManager = [[TCBatchRequestManager alloc] initWithSuccessBlock:^(NSDictionary *successResponses) {
         NSLog(@"%@", successResponses);
     } failure:^(NSDictionary *errorResponses) {
         NSLog(@"%@", errorResponses);
     } useClient:[TCCommAPIClient sharedInstance]];
-    [batchRequestManager addBatchRequests:@[request1, request2, request3]];
-    [batchRequestManager startRequest];
+    [self.batchRequestManager addBatchRequests:@[request1, request2, request3]];
+    [self.batchRequestManager startRequest];
 }
 
 - (void)didReceiveMemoryWarning {

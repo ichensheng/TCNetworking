@@ -30,6 +30,9 @@
 }
 
 + (NSString *)replaceBlack:(NSString *)string {
+    if (!string) {
+        return @"";
+    }
     NSMutableString *tmpString = [NSMutableString stringWithString:string];
     NSString *regular = @"([\\x00-\\x09\\x0b\\x0c\\x0e-\\x1f\\x7f])";
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regular

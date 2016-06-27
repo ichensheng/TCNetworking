@@ -44,8 +44,8 @@
         _failure = failure;
         _client = client;
         _batchRequests = [NSMutableArray array];
-        _successResponses = [[NSMutableDictionary alloc] init];
-        _failureResponses = [[NSMutableDictionary alloc] init];
+        _successResponses = [NSMutableDictionary dictionary];
+        _failureResponses = [NSMutableDictionary dictionary];
         
         /**
          * 请求队列
@@ -83,16 +83,18 @@
  */
 - (void)startRequest {
     NSLog(@"开始批量请求...");
-    self.canAddTask = NO; // 禁止添加任务
+    self.canAddTask = NO; // 开始请求之后禁止添加任务
     @weakify(self)
     for (TCBatchRequest *batchRequest in self.batchRequests) {
         TCBatchRequestOperation *operation =
         [[TCBatchRequestOperation alloc] initWithBatchRequst:batchRequest
                                                      success:^(NSString *responseString, TCBatchRequest *batchRequest) {
+                                                         NSLog(@"请求'%@'成功", batchRequest.URLString);
                                                          @strongify(self)
                                                          self.successResponses[[batchRequest description]] = responseString;
                                                          [self handleResponse];
                                                      } failure:^(NSError *error, TCBatchRequest *batchRequest) {
+                                                         NSLog(@"请求'%@'失败", batchRequest.URLString);
                                                          @strongify(self)
                                                          self.failureResponses[[batchRequest description]] = error;
                                                          [self handleResponse];
