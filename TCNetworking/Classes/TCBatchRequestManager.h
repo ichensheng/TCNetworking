@@ -21,8 +21,8 @@
  *
  *  @return TCBatchRequestManager
  */
-- (instancetype)initWithSuccessBlock:(void(^)(NSArray *responses))success
-                             failure:(void(^)(NSArray *responses, NSArray *errors))failure
+- (instancetype)initWithSuccessBlock:(void(^)(NSDictionary *successResponses))success
+                             failure:(void(^)(NSDictionary *errorResponses))failure
                            useClient:(TCBaseAPIClient *)client;
 
 /**
@@ -30,7 +30,14 @@
  *
  *  @param requests 批量请求数组
  */
-- (void)addBatchRequest:(NSArray<TCBatchRequest *> *)requests;
+- (void)addBatchRequests:(NSArray<TCBatchRequest *> *)requests;
+
+/**
+ *  添加请求
+ *
+ *  @param request 请求对象
+ */
+- (void)addBatchRequest:(TCBatchRequest *)request;
 
 /**
  *  启动批量请求

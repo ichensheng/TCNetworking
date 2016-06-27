@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		348C619B1D20F6A800C1B7AE /* TCBatchRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 348C619A1D20F6A800C1B7AE /* TCBatchRequestOperation.m */; };
 		348F30CC1D0DA7C100CEE872 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F30CB1D0DA7C100CEE872 /* main.m */; };
 		348F30CF1D0DA7C100CEE872 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F30CE1D0DA7C100CEE872 /* AppDelegate.m */; };
 		348F30D21D0DA7C100CEE872 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348F30D11D0DA7C100CEE872 /* ViewController.m */; };
@@ -49,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		348C61991D20F6A800C1B7AE /* TCBatchRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBatchRequestOperation.h; sourceTree = "<group>"; };
+		348C619A1D20F6A800C1B7AE /* TCBatchRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBatchRequestOperation.m; sourceTree = "<group>"; };
 		348F30C71D0DA7C100CEE872 /* TCNetworking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCNetworking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		348F30CB1D0DA7C100CEE872 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		348F30CD1D0DA7C100CEE872 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				348F31291D0DA8A600CEE872 /* TCBatchRequest.m */,
 				348F312A1D0DA8A600CEE872 /* TCBatchRequestManager.h */,
 				348F312B1D0DA8A600CEE872 /* TCBatchRequestManager.m */,
+				348C61991D20F6A800C1B7AE /* TCBatchRequestOperation.h */,
+				348C619A1D20F6A800C1B7AE /* TCBatchRequestOperation.m */,
 				348F312C1D0DA8A600CEE872 /* TCCommAPIClient.h */,
 				348F312D1D0DA8A600CEE872 /* TCCommAPIClient.m */,
 				348F312E1D0DA8A600CEE872 /* TCDownloadManager.h */,
@@ -426,6 +431,7 @@
 				348F31401D0DA8A600CEE872 /* TCBaseAPIClient.m in Sources */,
 				348F31451D0DA8A600CEE872 /* TCDownloadOperation.m in Sources */,
 				348F30CF1D0DA7C100CEE872 /* AppDelegate.m in Sources */,
+				348C619B1D20F6A800C1B7AE /* TCBatchRequestOperation.m in Sources */,
 				348F314B1D0DA8A600CEE872 /* TCUploadManager.m in Sources */,
 				348F31491D0DA8A600CEE872 /* TCSerialRequestManager.m in Sources */,
 				348F314C1D0DA8A600CEE872 /* TCUploadOperation.m in Sources */,

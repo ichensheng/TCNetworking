@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "TCBatchRequestManager.h"
+#import "TCCommAPIClient.h"
 
 @interface ViewController ()
 
@@ -16,7 +18,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    TCBatchRequest *request1 = [[TCBatchRequest alloc] initWithURL:@"http://www.baidu.com" parameters:nil];
+    TCBatchRequest *request2 = [[TCBatchRequest alloc] initWithURL:@"http://www.qq.com" parameters:nil];
+    TCBatchRequest *request3 = [[TCBatchRequest alloc] initWithURL:@"http://www.sina.com" parameters:nil];
+    TCBatchRequestManager *batchRequestManager = [[TCBatchRequestManager alloc] initWithSuccessBlock:^(NSDictionary *successResponses) {
+        NSLog(@"%@", successResponses);
+    } failure:^(NSDictionary *errorResponses) {
+        NSLog(@"%@", errorResponses);
+    } useClient:[TCCommAPIClient sharedInstance]];
+    [batchRequestManager addBatchRequests:@[request1, request2, request3]];
+    [batchRequestManager startRequest];
 }
 
 - (void)didReceiveMemoryWarning {

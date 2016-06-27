@@ -7,13 +7,19 @@
 //
 
 #import "TCBatchRequestManager.h"
+#import "TCBatchRequestOperation.h"
 
 @interface TCBatchRequestManager()
 
-@property (nonatomic, copy) void(^success)(NSArray *responses);
-@property (nonatomic, copy) void(^failure)(NSArray *responses, NSArray *errors);
+@property (nonatomic, copy) void(^success)(NSDictionary *responses);
+@property (nonatomic, copy) void(^failure)(NSDictionary *responses);
+@property (nonatomic, strong) NSOperationQueue *requestQueue;
 @property (nonatomic, strong) TCBaseAPIClient *client;
-@property (nonatomic, strong) NSMutableDictionary *requestTasks;
+@property (nonatomic, strong) NSMutableArray *batchRequests;
+@property (nonatomic, assign) BOOL canAddTask;
+
+@property (nonatomic, strong) NSMutableDictionary *successResponses;
+@property (nonatomic, strong) NSMutableDictionary *failureResponses;
 
 @end
 
@@ -28,15 +34,24 @@
  *
  *  @return TCBatchRequestManager
  */
-- (instancetype)initWithSuccessBlock:(void(^)(NSArray *responses))success
-                             failure:(void(^)(NSArray *responses, NSArray *errors))failure
+- (instancetype)initWithSuccessBlock:(void(^)(NSDictionary *successResponses))success
+                             failure:(void(^)(NSDictionary *errorResponses))failure
                            useClient:(TCBaseAPIClient *)client {
     
     if (self = [super init]) {
+        _canAddTask = YES;
         _success = success;
         _failure = failure;
         _client = client;
-        _requestTasks = [NSMutableDictionary dictionary];
+        _batchRequests = [NSMutableArray array];
+        _successResponses = [[NSMutableDictionary alloc] init];
+        _failureResponses = [[NSMutableDictionary alloc] init];
+        
+        /**
+         * 请求队列
+         */
+        _requestQueue = [[NSOperationQueue alloc] init];
+        [_requestQueue setMaxConcurrentOperationCount:1];
     }
     return self;
 }
@@ -46,15 +61,58 @@
  *
  *  @param requests 批量请求数组
  */
-- (void)addBatchRequest:(NSArray<TCBatchRequest *> *)requests {
-    
+- (void)addBatchRequests:(NSArray<TCBatchRequest *> *)requests {
+    if (self.canAddTask) {
+        [self.batchRequests addObjectsFromArray:requests];
+    }
+}
+
+/**
+ *  添加请求
+ *
+ *  @param request 请求对象
+ */
+- (void)addBatchRequest:(TCBatchRequest *)request {
+    if (self.canAddTask) {
+        [self.batchRequests addObject:request];
+    }
 }
 
 /**
  *  启动批量请求
  */
 - (void)startRequest {
-    
+    NSLog(@"开始批量请求...");
+    self.canAddTask = NO; // 禁止添加任务
+    @weakify(self)
+    for (TCBatchRequest *batchRequest in self.batchRequests) {
+        TCBatchRequestOperation *operation =
+        [[TCBatchRequestOperation alloc] initWithBatchRequst:batchRequest
+                                                     success:^(NSString *responseString, TCBatchRequest *batchRequest) {
+                                                         @strongify(self)
+                                                         self.successResponses[[batchRequest description]] = responseString;
+                                                         [self handleResponse];
+                                                     } failure:^(NSError *error, TCBatchRequest *batchRequest) {
+                                                         @strongify(self)
+                                                         self.failureResponses[[batchRequest description]] = error;
+                                                         [self handleResponse];
+                                                     }];
+        operation.client = self.client;
+        [self.requestQueue addOperation:operation];
+    }
+}
+
+- (void)handleResponse {
+    if (self.successResponses.count + self.failureResponses.count == self.batchRequests.count) {
+        if (self.successResponses.count > 0) {
+            self.success(self.successResponses);
+        }
+        if (self.failureResponses.count > 0) {
+            self.failure(self.failureResponses);
+        }
+        self.canAddTask = YES;
+        NSLog(@"完成批量请求...");
+    }
 }
 
 @end

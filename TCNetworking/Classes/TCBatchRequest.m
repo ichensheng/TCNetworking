@@ -35,4 +35,8 @@
     return self;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@-%@", [self.URLString description], [self.parameters description]];
+}
+
 @end
