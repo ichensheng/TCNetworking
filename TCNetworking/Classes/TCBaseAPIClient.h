@@ -50,6 +50,20 @@
     #endif
 #endif
 
+/**
+ *  请求方式
+ */
+typedef NS_ENUM(NSInteger, TCRequestAction) {
+    /**
+     *  GET请求
+     */
+    GET,
+    /**
+     *  POST请求
+     */
+    POST
+};
+
 @interface TCBaseAPIClient : AFHTTPSessionManager
 
 /**

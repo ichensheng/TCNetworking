@@ -28,25 +28,27 @@ typedef void (^TCRequestCancelBlock)();
  *
  *  @return TCSerialRequestOperation
  */
-- (instancetype)initWithURL:(NSString *)URLString
-                 parameters:(NSDictionary *)parameters
-                    success:(TCRequestSuccessBlock)success
-                    failure:(TCRequestFailureBlock)failure
-                     cancel:(TCRequestCancelBlock)cancel;
++ (instancetype)GET:(NSString *)URLString
+         parameters:(NSDictionary *)parameters
+            success:(TCRequestSuccessBlock)success
+            failure:(TCRequestFailureBlock)failure
+             cancel:(TCRequestCancelBlock)cancel;
 
 /**
  *  创建一个请求Operation
  *
- *  @param URLString 文件路径
- *  @param success   成功回调
- *  @param failure   失败回调
- *  @param cancel    取消回调
+ *  @param URLString  文件路径
+ *  @param parameters 请求参数
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ *  @param cancel     取消回调
  *
  *  @return TCSerialRequestOperation
  */
-- (instancetype)initWithURL:(NSString *)URLString
-                    success:(TCRequestSuccessBlock)success
-                    failure:(TCRequestFailureBlock)failure
-                     cancel:(TCRequestCancelBlock)cancel;
++ (instancetype)POST:(NSString *)URLString
+          parameters:(NSDictionary *)parameters
+             success:(TCRequestSuccessBlock)success
+             failure:(TCRequestFailureBlock)failure
+              cancel:(TCRequestCancelBlock)cancel;
 
 @end

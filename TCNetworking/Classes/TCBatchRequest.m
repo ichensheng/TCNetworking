@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong, readwrite) NSString *URLString;
 @property (nonatomic, copy, readwrite) NSDictionary *parameters;
-@property (nonatomic, assign, readwrite) TCBatchRequestAction action;
+@property (nonatomic, assign, readwrite) TCRequestAction action;
 
 @end
 

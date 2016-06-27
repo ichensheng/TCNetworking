@@ -45,7 +45,7 @@
 }
 
 /**
- *  发送请求
+ *  发送POST请求
  *
  *  @param URLString  请求路径
  *  @param parameters 请求参数
@@ -67,7 +67,7 @@
     
     @weakify(self)
     TCSerialRequestOperation *operation =
-    [[TCSerialRequestOperation alloc] initWithURL:URLString parameters:parameters success:^(NSString *responseString) {
+    [TCSerialRequestOperation POST:URLString parameters:parameters success:^(NSString *responseString) {
         @strongify(self)
         if (!self) {
             return;
@@ -99,19 +99,57 @@
 }
 
 /**
- *  发送请求
+ *  发送GET请求
  *
  *  @param URLString  请求路径
+ *  @param parameters 请求参数
  *  @param success    成功回调
  *  @param failure    失败回调
  *
  *  @return TCSerialRequestOperation
  */
 - (TCSerialRequestOperation *)GET:(NSString *)URLString
+                       parameters:(NSDictionary *)parameters
                           success:(TCRequestSuccessBlock)success
                           failure:(TCRequestFailureBlock)failure {
     
-    return [self POST:URLString parameters:nil success:success failure:failure];
+    NSURL *url = [NSURL fileURLWithPath:URLString];
+    if (self.URLRequests[url]) {
+        NSLog(@"正在请求进行：%@", [url absoluteString]);
+        return nil;
+    }
+    
+    @weakify(self)
+    TCSerialRequestOperation *operation =
+    [TCSerialRequestOperation GET:URLString parameters:parameters success:^(NSString *responseString) {
+        @strongify(self)
+        if (!self) {
+            return;
+        }
+        if (success) {
+            success(responseString);
+        }
+        [self doneForURL:url];
+    } failure:^(NSError *error) {
+        @strongify(self)
+        if (!self) {
+            return;
+        }
+        if (error) {
+            failure(error);
+        }
+        [self doneForURL:url];
+    } cancel:^{
+        @strongify(self)
+        if (!self) {
+            return;
+        }
+        [self doneForURL:url];
+    }];
+    operation.client = self.client;
+    [self.requestQueue addOperation:operation];
+    
+    return operation;
 }
 
 /**

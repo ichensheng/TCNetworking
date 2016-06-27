@@ -21,6 +21,7 @@ static NSString * const kTCRequestLockName = @"com.ichensheng.networking.request
 @property (nonatomic, copy) TCRequestCancelBlock cancelBlock;
 @property (nonatomic, strong) NSRecursiveLock *lock;
 @property (nonatomic, strong) NSURLSessionDataTask *requestTask;
+@property (nonatomic, assign) TCRequestAction action;
 
 @property (assign, nonatomic, getter = isExecuting) BOOL executing;
 @property (assign, nonatomic, getter = isFinished) BOOL finished;
@@ -64,19 +65,55 @@ static NSString * const kTCRequestLockName = @"com.ichensheng.networking.request
 /**
  *  创建一个请求Operation
  *
- *  @param URLString 文件路径
- *  @param success   成功回调
- *  @param failure   失败回调
- *  @param cancel    取消回调
+ *  @param URLString  文件路径
+ *  @param parameters 请求参数
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ *  @param cancel     取消回调
  *
  *  @return TCSerialRequestOperation
  */
-- (instancetype)initWithURL:(NSString *)URLString
-                    success:(TCRequestSuccessBlock)success
-                    failure:(TCRequestFailureBlock)failure
-                     cancel:(TCRequestCancelBlock)cancel {
++ (instancetype)GET:(NSString *)URLString
+         parameters:(NSDictionary *)parameters
+            success:(TCRequestSuccessBlock)success
+            failure:(TCRequestFailureBlock)failure
+             cancel:(TCRequestCancelBlock)cancel {
     
-    return [self initWithURL:URLString parameters:nil success:success failure:failure cancel:cancel];
+    TCSerialRequestOperation *operation =
+    [[TCSerialRequestOperation alloc] initWithURL:URLString
+                                       parameters:parameters
+                                          success:success
+                                          failure:failure
+                                           cancel:cancel];
+    operation.action = GET;
+    return operation;
+}
+
+/**
+ *  创建一个请求Operation
+ *
+ *  @param URLString  文件路径
+ *  @param parameters 请求参数
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ *  @param cancel     取消回调
+ *
+ *  @return TCSerialRequestOperation
+ */
++ (instancetype)POST:(NSString *)URLString
+          parameters:(NSDictionary *)parameters
+             success:(TCRequestSuccessBlock)success
+             failure:(TCRequestFailureBlock)failure
+              cancel:(TCRequestCancelBlock)cancel {
+    
+    TCSerialRequestOperation *operation =
+    [[TCSerialRequestOperation alloc] initWithURL:URLString
+                                       parameters:parameters
+                                          success:success
+                                          failure:failure
+                                           cancel:cancel];
+    operation.action = POST;
+    return operation;
 }
 
 - (void)start {
@@ -90,30 +127,57 @@ static NSString * const kTCRequestLockName = @"com.ichensheng.networking.request
     CFRunLoopRun();
     self.executing = YES;
     @weakify(self)
-    self.requestTask =
-    [self.client POST:self.URLString parameters:self.parameters progress:nil
-              success:^(NSURLSessionDataTask * task, id responseObject) {
-                  @strongify(self)
-                  if (!self) {
-                      return;
+    if (self.action == GET) {
+        self.requestTask
+        = [self.client GET:self.URLString parameters:self.parameters progress:nil
+                 success:^(NSURLSessionDataTask * task, id responseObject) {
+                     @strongify(self)
+                     if (!self) {
+                         return;
+                     }
+                     if (self.successBlock) {
+                         self.successBlock([TCNetworkingHelper parseResponse:responseObject]);
+                     }
+                     [self done];
+                     CFRunLoopStop(CFRunLoopGetCurrent());
+                 }
+                 failure:^(NSURLSessionDataTask *task, NSError *error) {
+                     @strongify(self)
+                     if (!self) {
+                         return;
+                     }
+                     if (self.failureBlock) {
+                         self.failureBlock(error);
+                     }
+                     [self done];
+                     CFRunLoopStop(CFRunLoopGetCurrent());
+                 }];
+    } else {
+        self.requestTask
+        = [self.client POST:self.URLString parameters:self.parameters progress:nil
+                  success:^(NSURLSessionDataTask * task, id responseObject) {
+                      @strongify(self)
+                      if (!self) {
+                          return;
+                      }
+                      if (self.successBlock) {
+                          self.successBlock([TCNetworkingHelper parseResponse:responseObject]);
+                      }
+                      [self done];
+                      CFRunLoopStop(CFRunLoopGetCurrent());
                   }
-                  if (self.successBlock) {
-                      self.successBlock([TCNetworkingHelper parseResponse:responseObject]);
-                  }
-                  [self done];
-                  CFRunLoopStop(CFRunLoopGetCurrent());
-              }
-              failure:^(NSURLSessionDataTask *task, NSError *error) {
-                  @strongify(self)
-                  if (!self) {
-                      return;
-                  }
-                  if (self.failureBlock) {
-                      self.failureBlock(error);
-                  }
-                  [self done];
-                  CFRunLoopStop(CFRunLoopGetCurrent());
-              }];
+                  failure:^(NSURLSessionDataTask *task, NSError *error) {
+                      @strongify(self)
+                      if (!self) {
+                          return;
+                      }
+                      if (self.failureBlock) {
+                          self.failureBlock(error);
+                      }
+                      [self done];
+                      CFRunLoopStop(CFRunLoopGetCurrent());
+                  }];
+    }
     [self.lock unlock];
 }
 

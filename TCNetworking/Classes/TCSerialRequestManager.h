@@ -21,7 +21,7 @@
 + (instancetype)instanceWithClient:(TCBaseAPIClient *)client;
 
 /**
- *  发送请求
+ *  发送POST请求
  *
  *  @param URLString  请求路径
  *  @param parameters 请求参数
@@ -36,15 +36,17 @@
                            failure:(TCRequestFailureBlock)failure;
 
 /**
- *  发送请求
+ *  发送GET请求
  *
  *  @param URLString  请求路径
+ *  @param parameters 请求参数
  *  @param success    成功回调
  *  @param failure    失败回调
  *
  *  @return TCSerialRequestOperation
  */
 - (TCSerialRequestOperation *)GET:(NSString *)URLString
+                       parameters:(NSDictionary *)parameters
                           success:(TCRequestSuccessBlock)success
                           failure:(TCRequestFailureBlock)failure;
 

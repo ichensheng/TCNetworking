@@ -7,26 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
-/**
- *  请求方式
- */
-typedef NS_ENUM(NSInteger, TCBatchRequestAction) {
-    /**
-     *  GET请求
-     */
-    GET,
-    /**
-     *  POST请求
-     */
-    POST
-};
+#import "TCBaseAPIClient.h"
 
 @interface TCBatchRequest : NSObject
 
 @property (nonatomic, strong, readonly) NSString *URLString;
 @property (nonatomic, copy, readonly) NSDictionary *parameters;
-@property (nonatomic, assign, readonly) TCBatchRequestAction action;
+@property (nonatomic, assign, readonly) TCRequestAction action;
 
 /**
  *  构造批量请求对象
