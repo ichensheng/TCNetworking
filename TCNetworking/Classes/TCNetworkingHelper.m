@@ -21,10 +21,10 @@
     NSString *response = [[NSString alloc] initWithData:responseObject
                                                encoding:NSUTF8StringEncoding];
     if (!response) {
-        response = [self replaceBlack:response];
         unsigned long encode = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
         response = [[NSString alloc] initWithData:responseObject encoding:encode];
     }
+    response = [self replaceBlack:response];
     
     return response;
 }
