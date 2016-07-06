@@ -119,4 +119,11 @@
     }
 }
 
+/**
+ *  取消所有请求
+ */
+- (void)cancelAllRequest {
+    [self.requestQueue cancelAllOperations];
+}
+
 @end

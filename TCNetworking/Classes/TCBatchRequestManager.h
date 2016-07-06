@@ -46,4 +46,9 @@
  */
 - (void)startRequest;
 
+/**
+ *  取消所有请求
+ */
+- (void)cancelAllRequest;
+
 @end
