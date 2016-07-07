@@ -56,9 +56,15 @@
 - (void)cancelAllRequest {
     [self.operationQueue cancelAllOperations];
     [self.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
-        [dataTasks performSelector:@selector(cancel)];
-        [uploadTasks performSelector:@selector(cancel)];
-        [downloadTasks performSelector:@selector(cancel)];
+        [dataTasks enumerateObjectsUsingBlock:^(NSURLSessionDataTask *task, NSUInteger idx, BOOL *stop) {
+            [task cancel];
+        }];
+        [uploadTasks enumerateObjectsUsingBlock:^(NSURLSessionUploadTask *task, NSUInteger idx, BOOL *stop) {
+            [task cancel];
+        }];
+        [downloadTasks enumerateObjectsUsingBlock:^(NSURLSessionDownloadTask *task, NSUInteger idx, BOOL *stop) {
+            [task cancel];
+        }];
     }];
 }
 
