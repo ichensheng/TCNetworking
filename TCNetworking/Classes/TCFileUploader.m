@@ -54,7 +54,7 @@
         return nil;
     }
     uploadTask = [client uploadTaskWithStreamedRequest:request progress:^(NSProgress *uploadProgress) {
-        progress((NSUInteger)uploadProgress.totalUnitCount, (NSUInteger)uploadProgress.fractionCompleted);
+        progress((NSUInteger)uploadProgress.totalUnitCount, (NSUInteger)uploadProgress.completedUnitCount);
     } completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
             failure(response, error);
