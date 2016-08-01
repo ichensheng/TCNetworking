@@ -262,12 +262,28 @@ static NSString * const kProgressKey = @"progress";
     for (NSString *fileURL in fileURLs) {
         TCUploadOperation *operation =
         [self doUploadFile:fileURL serverURL:serverURL progress:progress success:^(NSURLResponse *response, NSString *responseString, NSString *fileURL) {
-            [successes addObject:@{@"response":response, @"responseString":responseString, @"fileURL":fileURL}];
+            NSMutableDictionary *successResult = [NSMutableDictionary dictionary];
+            if (response) {
+                successResult[@"response"] = response;
+            }
+            if (responseString) {
+                successResult[@"responseString"] = responseString;
+            }
+            successResult[@"fileURL"] = fileURL;
+            [successes addObject:successResult];
             if (successes.count + failures.count == count) {
                 complete(successes, failures);
             }
         } failure:^(NSURLResponse *response, NSError *error, NSString *fileURL) {
-            [failures addObject:@{@"response":response, @"error":error, @"fileURL":fileURL}];
+            NSMutableDictionary *errorResult = [NSMutableDictionary dictionary];
+            if (response) {
+                errorResult[@"response"] = response;
+            }
+            if (error) {
+                errorResult[@"error"] = error;
+            }
+            errorResult[@"fileURL"] = fileURL;
+            [failures addObject:errorResult];
             if (successes.count + failures.count == count) {
                 complete(successes, failures);
             }
