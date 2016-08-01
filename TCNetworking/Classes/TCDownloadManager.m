@@ -97,12 +97,8 @@ static NSString * const kProgressKey = @"progress";
             if (!self) {
                 return;
             }
-            __block NSArray *callbacksForURL;
-            __block NSMutableArray *progressesArray;
-            dispatch_sync(self.barrierQueue, ^{
-                callbacksForURL = [self.URLCallbacks[url] copy];
-                progressesArray = self.URLProgresses[url];
-            });
+            NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
+            NSMutableArray *progressesArray = self.URLProgresses[url];
             for (NSDictionary *callbacks in callbacksForURL) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     TCDownloadProgressBlock callback = callbacks[kProgressCallbackKey];
@@ -120,10 +116,7 @@ static NSString * const kProgressKey = @"progress";
             if (!self) {
                 return nil;
             }
-            __block NSArray *callbacksForURL;
-            dispatch_barrier_sync(self.barrierQueue, ^{
-                callbacksForURL = [self.URLCallbacks[url] copy];
-            });
+            __block NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
             NSURL *destinationURL = nil;
             for (NSDictionary *callbacks in callbacksForURL) {
                 TCDownloadDestinationBlock callback = callbacks[kDestinationCallbackKey];
@@ -138,10 +131,7 @@ static NSString * const kProgressKey = @"progress";
             if (!self) {
                 return;
             }
-            __block NSArray *callbacksForURL;
-            dispatch_barrier_sync(self.barrierQueue, ^{
-                callbacksForURL = [self.URLCallbacks[url] copy];
-            });
+            NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
             for (NSDictionary *callbacks in callbacksForURL) {
                 TCDownloadSuccessBlock callback = callbacks[kSuccessCallbackKey];
                 if (callback) {
@@ -154,10 +144,7 @@ static NSString * const kProgressKey = @"progress";
             if (!self) {
                 return;
             }
-            __block NSArray *callbacksForURL;
-            dispatch_barrier_sync(self.barrierQueue, ^{
-                callbacksForURL = [self.URLCallbacks[url] copy];
-            });
+            NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
             for (NSDictionary *callbacks in callbacksForURL) {
                 TCDownloadFailureBlock callback = callbacks[kFailureCallbackKey];
                 if (callback) {

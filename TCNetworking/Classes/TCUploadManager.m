@@ -8,6 +8,10 @@
 
 #import "TCUploadManager.h"
 
+typedef void (^TCDoUploadProgressBlock)(NSUInteger total, NSUInteger completed, NSString *fileURL);
+typedef void (^TCDoUploadSuccessBlock)(NSURLResponse *response, NSString *responseString, NSString *fileURL);
+typedef void (^TCDoUploadFailureBlock)(NSURLResponse *response, NSError *error, NSString *fileURL);
+
 static NSString * const kProgressCallbackKey = @"progressCallback";
 static NSString * const kSuccessCallbackKey = @"successCallback";
 static NSString * const kFailureCallbackKey = @"failureCallback";
@@ -86,6 +90,32 @@ static NSString * const kProgressKey = @"progress";
                           success:(TCUploadSuccessBlock)success
                           failure:(TCUploadFailureBlock)failure {
     
+    return [self doUploadFile:fileURL serverURL:serverURL progress:^(NSUInteger total, NSUInteger completed, NSString *fileURL) {
+        progress(total, completed);
+    } success:^(NSURLResponse *response, NSString *responseString, NSString *fileURL) {
+        success(response, responseString);
+    } failure:^(NSURLResponse *response, NSError *error, NSString *fileURL) {
+        failure(response, error);
+    }];
+}
+
+/**
+ *  上传文件
+ *
+ *  @param fileURL   文件路径
+ *  @param serverURL 上传地址
+ *  @param progress  进度回调
+ *  @param success   成功回调
+ *  @param failure   失败回调
+ *
+ *  @return TCUploadOperation对象
+ */
+- (TCUploadOperation *)doUploadFile:(NSString *)fileURL
+                          serverURL:(NSString *)serverURL
+                           progress:(TCDoUploadProgressBlock)progress
+                            success:(TCDoUploadSuccessBlock)success
+                            failure:(TCDoUploadFailureBlock)failure {
+    
     __block TCUploadOperation *operation;
     NSURL *url = [NSURL fileURLWithPath:fileURL];
     @weakify(self)
@@ -96,12 +126,8 @@ static NSString * const kProgressKey = @"progress";
             if (!self) {
                 return;
             }
-            __block NSArray *callbacksForURL;
-            __block NSMutableArray *progressesArray;
-            dispatch_sync(self.barrierQueue, ^{
-                callbacksForURL = [self.URLCallbacks[url] copy];
-                progressesArray = self.URLProgresses[url];
-            });
+            NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
+            NSMutableArray *progressesArray = self.URLProgresses[url];
             for (NSDictionary *callbacks in callbacksForURL) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     TCUploadProgressBlock callback = callbacks[kProgressCallbackKey];
@@ -118,10 +144,7 @@ static NSString * const kProgressKey = @"progress";
             if (!self) {
                 return;
             }
-            __block NSArray *callbacksForURL;
-            dispatch_barrier_sync(self.barrierQueue, ^{
-                callbacksForURL = [self.URLCallbacks[url] copy];
-            });
+            NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
             for (NSDictionary *callbacks in callbacksForURL) {
                 TCUploadSuccessBlock callback = callbacks[kSuccessCallbackKey];
                 if (callback) {
@@ -134,10 +157,7 @@ static NSString * const kProgressKey = @"progress";
             if (!self) {
                 return;
             }
-            __block NSArray *callbacksForURL;
-            dispatch_barrier_sync(self.barrierQueue, ^{
-                callbacksForURL = [self.URLCallbacks[url] copy];
-            });
+            NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
             for (NSDictionary *callbacks in callbacksForURL) {
                 TCUploadFailureBlock callback = callbacks[kFailureCallbackKey];
                 if (callback) {
@@ -158,16 +178,16 @@ static NSString * const kProgressKey = @"progress";
     return operation;
 }
 
-- (void)addProgressCallback:(TCUploadProgressBlock)progress
-                    success:(TCUploadSuccessBlock)success
-                    failure:(TCUploadFailureBlock)failure
+- (void)addProgressCallback:(TCDoUploadProgressBlock)progress
+                    success:(TCDoUploadSuccessBlock)success
+                    failure:(TCDoUploadFailureBlock)failure
                      forURL:(NSURL *)url
                      create:(void(^)())create {
     
     // 上传的文件路径如果为空则直接返回
     if (url == nil) {
         if (success != nil) {
-            success(nil, nil);
+            success(nil, nil, nil);
         }
         return;
     }
@@ -191,7 +211,7 @@ static NSString * const kProgressKey = @"progress";
         if (progress) { // 进度回调
             if (!first) { // 后面启动的下载立即获取最新进度
                 NSMutableArray *progressesArray = self.URLProgresses[url];
-                progress([progressesArray[0] integerValue], [progressesArray[1] integerValue]);
+                progress([progressesArray[0] integerValue], [progressesArray[1] integerValue], [url absoluteString]);
             }
             callbacks[kProgressCallbackKey] = [progress copy];
         }
@@ -218,6 +238,45 @@ static NSString * const kProgressKey = @"progress";
 - (void)doneForURL:(NSURL *)URL {
     [self.URLCallbacks removeObjectForKey:URL];
     [self.URLProgresses removeObjectForKey:URL];
+}
+
+/**
+ *  批量上传文件
+ *
+ *  @param fileURLs  文件路径数组
+ *  @param serverURL 上传地址
+ *  @param progress  进度回调，每一个文件都会有一个回调
+ *  @param complete  上传完成，回调里会给出成功和失败的结果
+ *
+ *  @return key为fileURL，值为TCUploadOperation
+ */
+- (NSDictionary *)uploadFiles:(NSArray *)fileURLs
+                    serverURL:(NSString *)serverURL
+                     progress:(TCBatchUploadProgressBlock)progress
+                     complete:(TCBatchUploadCompleteBlock)complete {
+    
+    NSUInteger count = fileURLs.count;
+    NSMutableDictionary *operations = [NSMutableDictionary dictionary];
+    NSMutableArray *successes = [NSMutableArray array];
+    NSMutableArray *failures = [NSMutableArray array];
+    for (NSString *fileURL in fileURLs) {
+        TCUploadOperation *operation =
+        [self doUploadFile:fileURL serverURL:serverURL progress:progress success:^(NSURLResponse *response, NSString *responseString, NSString *fileURL) {
+            [successes addObject:@{@"response":response, @"responseString":responseString, @"fileURL":fileURL}];
+            if (successes.count + failures.count == count) {
+                complete(successes, failures);
+            }
+        } failure:^(NSURLResponse *response, NSError *error, NSString *fileURL) {
+            [failures addObject:@{@"response":response, @"error":error, @"fileURL":fileURL}];
+            if (successes.count + failures.count == count) {
+                complete(successes, failures);
+            }
+        }];
+        if (operation) {
+            operations[fileURL] = operation;
+        }
+    }
+    return operations;
 }
 
 @end
