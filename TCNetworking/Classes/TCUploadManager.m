@@ -117,6 +117,7 @@ static NSString * const kProgressKey = @"progress";
                             failure:(TCDoUploadFailureBlock)failure {
     
     __block TCUploadOperation *operation;
+    fileURL = [fileURL copy];
     NSURL *url = [NSURL fileURLWithPath:fileURL];
     @weakify(self)
     [self addProgressCallback:progress success:success failure:failure forURL:url create:^{
@@ -129,12 +130,10 @@ static NSString * const kProgressKey = @"progress";
             NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
             NSMutableArray *progressesArray = self.URLProgresses[url];
             for (NSDictionary *callbacks in callbacksForURL) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    TCUploadProgressBlock callback = callbacks[kProgressCallbackKey];
-                    if (callback) {
-                        callback(total, completed);
-                    }
-                });
+                TCDoUploadProgressBlock callback = callbacks[kProgressCallbackKey];
+                if (callback) {
+                    callback(total, completed, fileURL);
+                }
             }
             // 记住下载进度
             progressesArray[0] = @(total);
@@ -146,9 +145,9 @@ static NSString * const kProgressKey = @"progress";
             }
             NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
             for (NSDictionary *callbacks in callbacksForURL) {
-                TCUploadSuccessBlock callback = callbacks[kSuccessCallbackKey];
+                TCDoUploadSuccessBlock callback = callbacks[kSuccessCallbackKey];
                 if (callback) {
-                    callback(response, responseObject);
+                    callback(response, responseObject, fileURL);
                 }
             }
             [self doneForURL:url];
@@ -159,9 +158,9 @@ static NSString * const kProgressKey = @"progress";
             }
             NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
             for (NSDictionary *callbacks in callbacksForURL) {
-                TCUploadFailureBlock callback = callbacks[kFailureCallbackKey];
+                TCDoUploadFailureBlock callback = callbacks[kFailureCallbackKey];
                 if (callback) {
-                    callback(response, error);
+                    callback(response, error, fileURL);
                 }
             }
             [self doneForURL:url];

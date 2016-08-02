@@ -51,8 +51,8 @@ static NSString * const kTCUploadLockName = @"com.ichensheng.networking.upload.o
                      cancel:(TCUploadCancelBlock)cancel {
     
     if (self = [super init]) {
-        _fileURL = fileURL;
-        _serverURL = serverURL;
+        _fileURL = [fileURL copy];
+        _serverURL = [serverURL copy];
         _lock = [[NSRecursiveLock alloc] init];
         _lock.name = kTCUploadLockName;
         _progressBlock = [progress copy];
