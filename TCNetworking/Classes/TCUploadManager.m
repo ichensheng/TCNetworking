@@ -177,6 +177,18 @@ static NSString * const kProgressKey = @"progress";
     return operation;
 }
 
+/**
+ *  判断某个文件是否正在上传
+ *
+ *  @param fileURL 文件路径
+ *
+ *  @return BOOL
+ */
+- (BOOL)isUploading:(NSString *)fileURL {
+    NSURL *url = [NSURL fileURLWithPath:fileURL];
+    return  self.URLCallbacks[url];
+}
+
 - (void)addProgressCallback:(TCDoUploadProgressBlock)progress
                     success:(TCDoUploadSuccessBlock)success
                     failure:(TCDoUploadFailureBlock)failure

@@ -74,4 +74,13 @@ typedef void (^TCBatchUploadCompleteBlock)(NSArray *successes, NSArray *failures
                      progress:(TCBatchUploadProgressBlock)progress
                      complete:(TCBatchUploadCompleteBlock)complete;
 
+/**
+ *  判断某个文件是否正在上传
+ *
+ *  @param fileURL 文件路径
+ *
+ *  @return BOOL
+ */
+- (BOOL)isUploading:(NSString *)fileURL;
+
 @end
