@@ -186,7 +186,7 @@ static NSString * const kProgressKey = @"progress";
  */
 - (BOOL)isUploading:(NSString *)fileURL {
     NSURL *url = [NSURL fileURLWithPath:fileURL];
-    return  self.URLCallbacks[url];
+    return !!self.URLCallbacks[url];
 }
 
 - (void)addProgressCallback:(TCDoUploadProgressBlock)progress
