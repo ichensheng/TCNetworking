@@ -112,8 +112,17 @@
 
 + (NSString *)MIMEType:(NSString *)fileURL {
     NSString *extension = [fileURL pathExtension];
-    CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
-    return (__bridge NSString *)UTTypeCopyPreferredTagWithClass (UTI, kUTTagClassMIMEType);
+    NSString *mimeType;
+    if (!extension || extension.length == 0) {
+        mimeType = @"application/octet-stream";
+    } else {
+        CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)extension, NULL);
+        mimeType = (__bridge NSString *)UTTypeCopyPreferredTagWithClass (UTI, kUTTagClassMIMEType);
+        if (!mimeType) {
+            mimeType = @"application/octet-stream";
+        }
+    }
+    return mimeType;
 }
 
 @end
