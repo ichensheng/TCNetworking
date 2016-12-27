@@ -42,7 +42,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     // 超时时间
-    manager.requestSerializer.timeoutInterval = 15.0f;
+    manager.requestSerializer.timeoutInterval = 30.0f;
     
     // 多线程并发访问网络
     dispatch_queue_t workQueue = dispatch_queue_create("com.ichensheng.network", DISPATCH_QUEUE_CONCURRENT);
