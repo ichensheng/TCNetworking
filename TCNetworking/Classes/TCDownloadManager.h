@@ -40,6 +40,13 @@
 - (void)cancelAllDownload;
 
 /**
+ * 指定URL取消一个下载
+ *
+ * @param URLString 文件地址
+ */
+- (void)cancelDownload:(NSString *)URLString;
+
+/**
  *  判断某个文件是否正在下载
  *
  *  @param url 文件地址
