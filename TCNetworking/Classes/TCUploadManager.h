@@ -43,6 +43,13 @@ typedef void (^TCBatchUploadCompleteBlock)(NSArray *successes, NSArray *failures
 - (void)cancelAllUpload;
 
 /**
+ * 指定URL取消一个上传
+ *
+ * @param fileURL 文件路径
+ */
+- (void)cancelUpload:(NSString *)fileURL;
+
+/**
  *  上传文件
  *
  *  @param fileURL   文件路径
@@ -81,6 +88,6 @@ typedef void (^TCBatchUploadCompleteBlock)(NSArray *successes, NSArray *failures
  *
  *  @return BOOL
  */
-- (BOOL)isUploading:(NSString *)fileURL;
+- (BOOL)checkUploadingWithURL:(NSString *)fileURL;
 
 @end

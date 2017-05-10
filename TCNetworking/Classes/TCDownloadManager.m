@@ -20,6 +20,7 @@ static NSString * const kProgressKey = @"progress";
 @property (nonatomic, strong) dispatch_queue_t barrierQueue;
 @property (nonatomic, strong) NSMutableDictionary *URLCallbacks;
 @property (nonatomic, strong) NSMutableDictionary *URLProgresses;
+@property (nonatomic, strong) NSMutableDictionary *operations;
 
 @end
 
@@ -31,6 +32,7 @@ static NSString * const kProgressKey = @"progress";
         [_downloadQueue setMaxConcurrentOperationCount:2];
         _URLCallbacks = [[NSMutableDictionary alloc] init];
         _URLProgresses = [[NSMutableDictionary alloc] init];
+        _operations = [[NSMutableDictionary alloc] init];
         _barrierQueue = dispatch_queue_create("com.ichensheng.network.download.TCBarrierQueue", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
@@ -68,6 +70,20 @@ static NSString * const kProgressKey = @"progress";
  */
 - (void)cancelAllDownload {
     [self.downloadQueue cancelAllOperations];
+}
+
+/**
+ * 指定URL取消一个下载
+ *
+ * @param URLString 文件地址
+ */
+- (void)cancelDownload:(NSString *)URLString {
+    NSURL *url = [NSURL URLWithString:URLString];
+    TCDownloadOperation *operation = self.operations[url];
+    if (operation) {
+        [operation cancel];
+        [self.operations removeObjectForKey:url];
+    }
 }
 
 /**
@@ -161,7 +177,13 @@ static NSString * const kProgressKey = @"progress";
         }];
         operation.client = self.client;
         [self.downloadQueue addOperation:operation];
+        self.operations[url] = operation;
     }];
+    
+    if (!operation) {
+        operation = self.operations[url];
+    }
+    
     return operation;
 }
 
@@ -222,6 +244,27 @@ static NSString * const kProgressKey = @"progress";
 }
 
 /**
+ *  判断某个文件是否正在下载
+ *
+ *  @param url 文件地址
+ *
+ *  @return 返回是否在下载
+ */
+- (BOOL)checkDownloadingWithURL:(NSURL *)url {
+    NSArray *callbacksForIdentifier = [self callbacksForIdentifier:url];
+    return callbacksForIdentifier.count > 0;
+}
+
+- (NSArray *)callbacksForIdentifier:(NSURL *)identifier {
+    __block NSArray *callbacksForIdentifier;
+    dispatch_sync(self.barrierQueue, ^{
+        callbacksForIdentifier = self.URLCallbacks[identifier];
+    });
+    return [callbacksForIdentifier copy];
+}
+
+
+/**
  *  下载完成
  *
  *  @param URL 下载地址
@@ -230,6 +273,7 @@ static NSString * const kProgressKey = @"progress";
     dispatch_barrier_sync(self.barrierQueue, ^{
         [self.URLCallbacks removeObjectForKey:URL];
         [self.URLProgresses removeObjectForKey:URL];
+        [self.operations removeObjectForKey:URL];
     });
 }
 
