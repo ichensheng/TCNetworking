@@ -222,6 +222,27 @@ static NSString * const kProgressKey = @"progress";
 }
 
 /**
+ *  判断某个文件是否正在下载
+ *
+ *  @param url 文件地址
+ *
+ *  @return 返回是否在下载
+ */
+- (BOOL)checkDownloadingWithURL:(NSURL *)url {
+    NSArray *callbacksForIdentifier = [self callbacksForIdentifier:url];
+    return callbacksForIdentifier.count > 0;
+}
+
+- (NSArray *)callbacksForIdentifier:(NSURL *)identifier {
+    __block NSArray *callbacksForIdentifier;
+    dispatch_sync(self.barrierQueue, ^{
+        callbacksForIdentifier = self.URLCallbacks[identifier];
+    });
+    return [callbacksForIdentifier copy];
+}
+
+
+/**
  *  下载完成
  *
  *  @param URL 下载地址
