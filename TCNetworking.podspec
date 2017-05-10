@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "RHNetworking"
+  s.name         = "TCNetworking"
   s.version      = "1.0.0"
   s.summary      = "AFNetworking封装"
   s.homepage     = "https://github.com/cochat/TCNetworking"
