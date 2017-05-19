@@ -147,27 +147,27 @@ static NSString * const kProgressKey = @"progress";
             if (!self) {
                 return;
             }
-            NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
+            NSArray *callbacksForURL = [[NSArray alloc] initWithArray:[self.URLCallbacks[url] copy]];
+            [self doneForURL:url];
             for (NSDictionary *callbacks in callbacksForURL) {
                 TCDownloadSuccessBlock callback = callbacks[kSuccessCallbackKey];
                 if (callback) {
                     callback(response, filePath);
                 }
             }
-            [self doneForURL:url];
         } failure:^(NSURLResponse *response, NSError *error) {
             @strongify(self)
             if (!self) {
                 return;
             }
-            NSArray *callbacksForURL = [self.URLCallbacks[url] copy];
+            NSArray *callbacksForURL = [[NSArray alloc] initWithArray:[self.URLCallbacks[url] copy]];
+            [self doneForURL:url];
             for (NSDictionary *callbacks in callbacksForURL) {
                 TCDownloadFailureBlock callback = callbacks[kFailureCallbackKey];
                 if (callback) {
                     callback(response, error);
                 }
             }
-            [self doneForURL:url];
         } cancel:^{
             @strongify(self)
             if (!self) {
